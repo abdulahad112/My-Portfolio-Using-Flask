@@ -99,3 +99,4 @@ def download_resume():
     folder = os.path.join(app.root_path, 'static', 'assets')
     return send_from_directory(folder, 'ahadcv.pdf', as_attachment=True)
 
+app = app
