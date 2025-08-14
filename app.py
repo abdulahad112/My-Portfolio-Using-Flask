@@ -8,8 +8,7 @@ from flask_mail import Mail, Message
 import logging
 
 # ---------- App & config ----------
-instance_path = os.getenv('FLASK_INSTANCE_PATH', '/tmp')
-app = Flask(__name__, instance_path=instance_path)
+app = Flask(__name__)
 app.config.from_object(Config)
 
 # ---------- Logging ----------
