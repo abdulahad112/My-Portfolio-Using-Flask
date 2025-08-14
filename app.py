@@ -8,7 +8,8 @@ from flask_mail import Mail, Message
 import logging
 
 # ---------- App & config ----------
-app = Flask(__name__)
+instance_path = os.getenv('FLASK_INSTANCE_PATH', '/tmp')
+app = Flask(__name__, instance_path=instance_path)
 app.config.from_object(Config)
 
 # ---------- Logging ----------
@@ -99,4 +100,5 @@ def download_resume():
     folder = os.path.join(app.root_path, 'static', 'assets')
     return send_from_directory(folder, 'ahadcv.pdf', as_attachment=True)
 
-app = app
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
