@@ -1,0 +1,13 @@
+:root{
+  --bg:#0b0f14;
+  --card:#0f1720;
+  --muted:#98a0ad;
+  --accent:#2dd4bf;
+}
+body{background:var(--bg); color:#e6eef6}
+.card{background:var(--card)}
+.progress .progress-bar{background:linear-gradient(90deg, var(--accent), #60a5fa)}
+.skill-pct{color:var(--accent); font-weight:600}
+[data-theme='light']{ --bg:#f8fafc; --card:#ffffff; color:#0b1220; }
+:focus{outline:3px solid rgba(45,212,191,0.18); outline-offset:2px}
+

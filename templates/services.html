@@ -1,0 +1,180 @@
+{% extends "base.html" %}
+{% block title %}Services - My Portfolio{% endblock %}
+{% block content %}
+<section class="services-section py-6 bg-dark">
+  <div class="container position-relative">
+
+    <!-- Decorative blur circle -->
+    <div class="position-absolute top-0 end-0 opacity-10">
+      <div class="blur-circle bg-primary" style="width: 300px; height: 300px;"></div>
+    </div>
+
+    <!-- Heading -->
+    <div class="text-center mb-6 position-relative">
+      <h2 class="display-5 fw-bold text-white mb-3">
+        My <span class="text-primary-gradient">Services</span>
+      </h2>
+      <p class="text-light opacity-75 mx-auto" style="max-width: 700px;">
+        Professional solutions tailored to your needs. Each service is crafted with precision, modern tech, and attention to detail.
+      </p>
+    </div>
+
+    <!-- Service Cards -->
+    <div class="row g-4">
+
+      <!-- Web Development -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card service-card h-100 text-center">
+          <div class="icon-wrapper mb-3">
+            <div class="service-icon bg-primary-gradient">
+              <i class="fas fa-code fa-3x text-white"></i>
+            </div>
+          </div>
+          <h5 class="text-white mb-2">Web Development</h5>
+          <p class="text-light opacity-75 small">
+            Responsive, modern websites using HTML, CSS, JavaScript, and Flask/Django.
+          </p>
+          <div class="service-tech-tags">
+            <span class="badge bg-dark text-light border border-secondary">HTML5</span>
+            <span class="badge bg-dark text-light border border-secondary">CSS3</span>
+            <span class="badge bg-dark text-light border border-secondary">JS</span>
+            <span class="badge bg-dark text-light border border-secondary">Flask</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Writing -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card service-card h-100 text-center">
+          <div class="icon-wrapper mb-3">
+            <div class="service-icon bg-primary-gradient">
+              <i class="fas fa-pen-fancy fa-3x text-white"></i>
+            </div>
+          </div>
+          <h5 class="text-white mb-2">Technical Writing</h5>
+          <p class="text-light opacity-75 small">
+            Clear, precise documentation and research for technical and academic purposes.
+          </p>
+          <div class="service-tech-tags">
+            <span class="badge bg-dark text-light border border-secondary">Docs</span>
+            <span class="badge bg-dark text-light border border-secondary">Research</span>
+            <span class="badge bg-dark text-light border border-secondary">SEO</span>
+            <span class="badge bg-dark text-light border border-secondary">Markdown</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Automation -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card service-card h-100 text-center">
+          <div class="icon-wrapper mb-3">
+            <div class="service-icon bg-primary-gradient">
+              <i class="fas fa-robot fa-3x text-white"></i>
+            </div>
+          </div>
+          <h5 class="text-white mb-2">AI Automation</h5>
+          <p class="text-light opacity-75 small">
+            AI-driven workflows, automation scripts, and chatbot solutions.
+          </p>
+          <div class="service-tech-tags">
+            <span class="badge bg-dark text-light border border-secondary">Python</span>
+            <span class="badge bg-dark text-light border border-secondary">NLP</span>
+            <span class="badge bg-dark text-light border border-secondary">TensorFlow</span>
+            <span class="badge bg-dark text-light border border-secondary">Bots</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Data Analysis -->
+      <div class="col-md-6 col-lg-3">
+        <div class="card service-card h-100 text-center">
+          <div class="icon-wrapper mb-3">
+            <div class="service-icon bg-primary-gradient">
+              <i class="fas fa-database fa-3x text-white"></i>
+            </div>
+          </div>
+          <h5 class="text-white mb-2">Data Analysis</h5>
+          <p class="text-light opacity-75 small">
+            Data cleaning, visualization, and ML insights to power decisions.
+          </p>
+          <div class="service-tech-tags">
+            <span class="badge bg-dark text-light border border-secondary">Pandas</span>
+            <span class="badge bg-dark text-light border border-secondary">NumPy</span>
+            <span class="badge bg-dark text-light border border-secondary">Matplotlib</span>
+            <span class="badge bg-dark text-light border border-secondary">Scikit-learn</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .blur-circle {
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+  .service-card {
+    background-color: var(--dark-2, #2a2a2a);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+    border-color: rgba(58, 134, 255, 0.3);
+  }
+  .service-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+  .service-card:hover .service-icon {
+    transform: scale(1.1) rotate(5deg);
+  }
+  .service-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+  .text-primary-gradient {
+    background: linear-gradient(90deg, var(--primary, #00bfff) 0%, #6c63ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const cards = document.querySelectorAll('.service-card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = 1;
+            entry.target.style.transform = 'translateY(0)';
+          }, index * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach((card, index) => {
+      card.style.opacity = 0;
+      card.style.transform = 'translateY(30px)';
+      card.style.transition = `all 0.5s ease ${index * 0.1}s`;
+      observer.observe(card);
+    });
+  });
+</script>
+{% endblock %}

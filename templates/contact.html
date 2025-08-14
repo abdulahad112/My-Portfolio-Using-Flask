@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row justify-content-center py-5">
+  <div class="col-lg-6 col-md-8">
+    <div class="card shadow-lg border-0 rounded-4">
+      <div class="card-body p-4">
+        <h3 class="text-center mb-4 fw-bold text-primary">
+          <i class="bi bi-envelope-fill me-2"></i>Contact Me
+        </h3>
+        <form method="post" novalidate>
+          {{ form.hidden_tag() }}
+          
+          <!-- Name -->
+          <div class="mb-3">
+            {{ form.name.label(class_='form-label fw-semibold') }}
+            {{ form.name(class_='form-control rounded-3 shadow-sm', placeholder='Your full name') }}
+            {% for err in form.name.errors %}
+              <div class="text-danger small">{{ err }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Email -->
+          <div class="mb-3">
+            {{ form.email.label(class_='form-label fw-semibold') }}
+            {{ form.email(class_='form-control rounded-3 shadow-sm', placeholder='you@mail.com') }}
+            {% for err in form.email.errors %}
+              <div class="text-danger small">{{ err }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Subject -->
+          <div class="mb-3">
+            {{ form.subject.label(class_='form-label fw-semibold') }}
+            {{ form.subject(class_='form-control rounded-3 shadow-sm', placeholder='Subject') }}
+          </div>
+
+          <!-- Message -->
+          <div class="mb-3">
+            {{ form.message.label(class_='form-label fw-semibold') }}
+            {{ form.message(class_='form-control rounded-3 shadow-sm', rows=6, placeholder='Tell me about your project...') }}
+            {% for err in form.message.errors %}
+              <div class="text-danger small">{{ err }}</div>
+            {% endfor %}
+          </div>
+
+          <!-- Submit -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg rounded-3 shadow">
+              <i class="bi bi-send-fill me-1"></i> Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
