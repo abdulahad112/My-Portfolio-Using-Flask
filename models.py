@@ -4,6 +4,7 @@ from datetime import datetime
 db = SQLAlchemy()
 
 class ContactMessage(db.Model):
+    __tablename__ = "contact_message"  # ensures table name is exactly this
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
     email = db.Column(db.String(120), nullable=False)

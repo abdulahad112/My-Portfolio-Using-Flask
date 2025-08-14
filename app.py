@@ -1,45 +1,42 @@
 import os
 import logging
 import tempfile
-from flask import Flask, render_template, redirect, url_for, flash, send_from_directory, current_app
+from flask import Flask, render_template, redirect, url_for, flash, send_from_directory
 from config import Config
 from forms import ContactForm
 from models import db, ContactMessage
 from flask_migrate import Migrate
 from flask_mail import Mail, Message
+from datetime import datetime
 
-# ---------- Logging (early) ----------
+# ---------- Logging ----------
 logging.basicConfig(level=logging.INFO)
 
-# ---------- App (create) ----------
+# ---------- App ----------
 app = Flask(__name__, instance_relative_config=True)
 
-# ---------- SERVERLESS-SAFE: ensure instance_path is writable ----------
-# Use FLASK_INSTANCE_PATH env var to override (set in Vercel or other host)
+# ---------- SERVERLESS-SAFE INSTANCE PATH ----------
 instance_path = os.environ.get("FLASK_INSTANCE_PATH", "/tmp/instance")
-
-# On some platforms /tmp might not exist exactly like this; fallback to tempfile
 if not instance_path:
     instance_path = os.path.join(tempfile.gettempdir(), "instance")
-
-try:
-    os.makedirs(instance_path, exist_ok=True)
-    app.instance_path = instance_path
-    logging.info(f"Using instance_path: {app.instance_path}")
-except Exception as exc:
-    # If creation fails (rare), log and continue — Flask will use default instance_path
-    logging.warning(f"Could not set instance_path to {instance_path}: {exc}")
+os.makedirs(instance_path, exist_ok=True)
+app.instance_path = instance_path
+logging.info(f"Using instance_path: {app.instance_path}")
 
 # ---------- Load config ----------
 app.config.from_object(Config)
 
-# ---------- Extensions (initialize once) ----------
+# ---------- Extensions ----------
 db.init_app(app)
 migrate = Migrate(app, db)
-mail = Mail(app)
 
 mail = Mail()
 mail.init_app(app)
+
+# ---------- Create tables automatically ----------
+with app.app_context():
+    db.create_all()  # This ensures contact_message and other tables exist
+
 @app.route('/')
 def index():
     skills = [
