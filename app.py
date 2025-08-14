@@ -97,7 +97,7 @@ def contact():
 @app.route('/download/resume')
 def download_resume():
     folder = os.path.join(app.root_path, 'static', 'assets')
-    return send_from_directory(folder, 'resume.pdf', as_attachment=True)
+    return send_from_directory(folder, 'ahadcv.pdf', as_attachment=True)
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
